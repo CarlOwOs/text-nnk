@@ -2,14 +2,14 @@ import faiss
 import faiss.contrib.torch_utils
 
 class FAISS_Search:
-    def __init__(self, dim, use_gpu=False):
+    def __init__(self, dim, kernel, use_gpu=False):
         self.matrix = None
         if use_gpu:
             res = faiss.StandardGpuResources()
             # # res.noTempMemory()
-            self.index = faiss.GpuIndexFlatL2(res, dim)
+            self.index = faiss.GpuIndexFlatL2(res, dim) if kernel == "rbf" else faiss.GpuIndexFlatIP(res, dim)
         else:
-            self.index = faiss.IndexFlatL2(dim)
+            self.index = faiss.IndexFlatL2(dim) if kernel == "rbf" else faiss.IndexFlatIP(dim)
 
     def add(self, matrix):
         self.matrix = matrix

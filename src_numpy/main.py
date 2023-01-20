@@ -23,9 +23,9 @@ if __name__ == "__main__":
     dataset_embeddings = [model(**tokenized_sentence)[0].mean(axis=1) for tokenized_sentence in dataset_tokens]
     features = torch.cat(dataset_embeddings, dim=0).detach().numpy()
 
-    weight_values, error = nnk_graph(features, top_k=5)
+    weight_values = nnk_graph(features, top_k=5, kernel="rbf")
 
-        
+    
 
 
 
