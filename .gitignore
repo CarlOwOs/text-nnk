@@ -1,0 +1,5 @@
+*.out
+README.md
+scripts/
+/models/
+/data/
