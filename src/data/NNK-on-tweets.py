@@ -9,6 +9,7 @@ from src.utils.nnk_graph import nnk_graph
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--output_file', default='./data/test/data.csv')
+parser.add_argument('--model', default='bert-base-cased')
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -18,11 +19,11 @@ if __name__ == "__main__":
     print("Using device:", device)
     
     tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
-    model = AutoModel.from_pretrained("./models/finetuned-bert")
+    model = AutoModel.from_pretrained(args.model)
 
     dataset = load_dataset("tweet_eval", "sentiment")
     dataset = dataset["test"]
-
+    
     # split the dataset by label and sample
     dataset_negative = dataset.filter(lambda example: example["label"] == 0).shuffle(seed=14).select(range(600))
     dataset_neutral = dataset.filter(lambda example: example["label"] == 1).shuffle(seed=14).select(range(600))
