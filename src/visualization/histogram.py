@@ -19,14 +19,18 @@ if __name__ == "__main__":
         neu_count = 0
         pos_count = 0
         
-        for neighbor_idx in ast.literal_eval(row.indices):
-            if df.iloc[[neighbor_idx]]["label"].item() == 0:
-                neg_count += 1
-            elif df.iloc[[neighbor_idx]]["label"].item() == 1:
-                neu_count += 1
-            elif df.iloc[[neighbor_idx]]["label"].item() == 2:
-                pos_count += 1
+        row_weight_values = ast.literal_eval(row.weight_values)
+        row_indices = ast.literal_eval(row.indices)
         
+        for i in range(len(row_weight_values)):
+            if row_weight_values[i] > 0:
+                if df.iloc[[row_indices[i]]]["label"].item() == 0:
+                    neg_count += 1
+                elif df.iloc[[row_indices[i]]]["label"].item() == 1:
+                    neu_count += 1
+                elif df.iloc[[row_indices[i]]]["label"].item() == 2:
+                    pos_count += 1
+                    
         if neg_count not in data[row.label][0]:
             data[row.label][0][neg_count] = 1
         else:

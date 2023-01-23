@@ -28,13 +28,15 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
     
     def tokenize_function(examples):
-        return tokenizer(examples["text"], padding="max_length", truncation=True)
+        return tokenizer(examples["content"], padding="max_length", truncation=True)
+        #return tokenizer(examples["text"], padding="max_length", truncation=True)
     
-    dataset = load_dataset("tweet_eval", "sentiment")
+    # dataset = load_dataset("tweet_eval", "sentiment")
+    dataset = load_dataset("amazon_polarity")
     tokenized_datasets = dataset.map(tokenize_function, batched=True)
     # Reduce size for time purposes
-    small_train_dataset = tokenized_datasets["train"].shuffle(seed=42)#.select(range(50))
-    small_eval_dataset = tokenized_datasets["test"].shuffle(seed=42)#.select(range(50))
+    small_train_dataset = tokenized_datasets["train"].shuffle(seed=42).select(range(10000))
+    small_eval_dataset = tokenized_datasets["test"].shuffle(seed=42).select(range(2000))
     
     metric = evaluate.load("accuracy")
     

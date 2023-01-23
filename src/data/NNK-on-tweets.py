@@ -10,6 +10,7 @@ from src.utils.nnk_graph import nnk_graph
 parser = argparse.ArgumentParser()
 parser.add_argument('--output_file', default='./data/test/data.csv')
 parser.add_argument('--model', default='bert-base-cased')
+parser.add_argument('--dataset', default='tweet_eval.sentiment')
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -21,17 +22,24 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
     model = AutoModel.from_pretrained(args.model)
 
-    dataset = load_dataset("tweet_eval", "sentiment")
+    # args_dataset = args.dataset.split(".")
+    # if len(args_dataset) == 2:
+    #     dataset = load_dataset(args_dataset[0], args_dataset[1])
+    # else:
+    #     dataset = load_dataset(args_dataset[0])
+    #dataset = load_dataset("tweet_eval", "sentiment")
+    dataset = load_dataset("amazon_polarity")
     dataset = dataset["test"]
     
     # split the dataset by label and sample
-    dataset_negative = dataset.filter(lambda example: example["label"] == 0).shuffle(seed=14).select(range(600))
-    dataset_neutral = dataset.filter(lambda example: example["label"] == 1).shuffle(seed=14).select(range(600))
-    dataset_positive = dataset.filter(lambda example: example["label"] == 2).shuffle(seed=14).select(range(600))
-    dataset = concatenate_datasets([dataset_negative, dataset_neutral, dataset_positive])
+    dataset_negative = dataset.filter(lambda example: example["label"] == 0).shuffle(seed=14).select(range(1000))
+    dataset_positive = dataset.filter(lambda example: example["label"] == 1).shuffle(seed=14).select(range(1000))
+    # dataset_positive = dataset.filter(lambda example: example["label"] == 2).shuffle(seed=14).select(range(600))
+    #dataset = concatenate_datasets([dataset_negative, dataset_neutral, dataset_positive])
+    dataset = concatenate_datasets([dataset_negative, dataset_positive])
 
     # get the text field and labels from the training dataset
-    dataset_text = dataset["text"]
+    dataset_text = dataset["content"]#["text"]
     dataset_labels = dataset["label"]
     # list of each tokenized sentence
     dataset_tokens = [tokenizer(sentence, return_tensors="pt") for sentence in dataset_text]
