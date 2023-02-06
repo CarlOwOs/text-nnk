@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"data": {"name": "data-fc738be36025facee4029515768ac06b"}, "mark": "bar", "encoding": {"x": {"axis": {"title": "Token"}, "field": "index", "sort": ["[CLS]", "Interest", "##ing", "article", "on", "vaccine", "##s", "and", "how", "they", "can", "trigger", "auto", "##im", "##mu", "##ne", "diseases", "[SEP]", "[AVG]", "[MAX]"], "type": "nominal"}, "y": {"axis": {"title": "Norm of the embedding"}, "field": "value", "type": "quantitative"}}, "height": 400, "title": "Norm of the BERT embeddings", "width": 800}, {"data": {"name": "data-3f4299a7742a28921b718543f68a923d"}, "mark": "bar", "encoding": {"x": {"axis": {"title": "Token"}, "field": "index", "sort": ["[CLS]", "interesting", "article", "on", "vaccines", "and", "how", "they", "can", "trigger", "auto", "##im", "##mun", "##e", "diseases", "[SEP]", "[AVG]", "[MAX]"], "type": "nominal"}, "y": {"axis": {"title": "Norm of the embedding"}, "field": "value", "type": "quantitative"}}, "height": 400, "title": "Norm of the SBERT embeddings", "width": 800}], "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-fc738be36025facee4029515768ac06b": [{"index": "[CLS]", "columns": "norm", "value": 16.5714168548584}, {"index": "Interest", "columns": "norm", "value": 14.031128883361816}, {"index": "##ing", "columns": "norm", "value": 14.420670509338379}, {"index": "article", "columns": "norm", "value": 13.47004222869873}, {"index": "on", "columns": "norm", "value": 14.415796279907227}, {"index": "vaccine", "columns": "norm", "value": 12.801087379455566}, {"index": "##s", "columns": "norm", "value": 14.836051940917969}, {"index": "and", "columns": "norm", "value": 16.04765510559082}, {"index": "how", "columns": "norm", "value": 14.7914457321167}, {"index": "they", "columns": "norm", "value": 15.10920238494873}, {"index": "can", "columns": "norm", "value": 14.231157302856445}, {"index": "trigger", "columns": "norm", "value": 13.178901672363281}, {"index": "auto", "columns": "norm", "value": 14.543628692626953}, {"index": "##im", "columns": "norm", "value": 17.32263946533203}, {"index": "##mu", "columns": "norm", "value": 18.316303253173828}, {"index": "##ne", "columns": "norm", "value": 15.943897247314453}, {"index": "diseases", "columns": "norm", "value": 13.065348625183105}, {"index": "[SEP]", "columns": "norm", "value": 21.27642059326172}, {"index": "[AVG]", "columns": "norm", "value": 10.053348541259766}, {"index": "[MAX]", "columns": "norm", "value": 25.983566284179688}], "data-3f4299a7742a28921b718543f68a923d": [{"index": "[CLS]", "columns": "norm", "value": 7.28524112701416}, {"index": "interesting", "columns": "norm", "value": 11.19438648223877}, {"index": "article", "columns": "norm", "value": 12.273107528686523}, {"index": "on", "columns": "norm", "value": 8.105948448181152}, {"index": "vaccines", "columns": "norm", "value": 12.197640419006348}, {"index": "and", "columns": "norm", "value": 5.717700004577637}, {"index": "how", "columns": "norm", "value": 9.449735641479492}, {"index": "they", "columns": "norm", "value": 8.21406078338623}, {"index": "can", "columns": "norm", "value": 7.088939666748047}, {"index": "trigger", "columns": "norm", "value": 9.66561222076416}, {"index": "auto", "columns": "norm", "value": 10.20272159576416}, {"index": "##im", "columns": "norm", "value": 9.17503833770752}, {"index": "##mun", "columns": "norm", "value": 8.664891242980957}, {"index": "##e", "columns": "norm", "value": 4.783390045166016}, {"index": "diseases", "columns": "norm", "value": 9.5919771194458}, {"index": "[SEP]", "columns": "norm", "value": 6.604970932006836}, {"index": "[AVG]", "columns": "norm", "value": 5.250789642333984}, {"index": "[MAX]", "columns": "norm", "value": 16.521480560302734}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"data": {"name": "data-0211dab7bdc9a347c988528144aaa0bd"}, "mark": "bar", "encoding": {"x": {"field": "cos_cls", "title": "Distance to [CLS] token", "type": "nominal"}, "y": {"field": "count", "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Distribution of distances to [CLS] token", "width": 300}, {"data": {"name": "data-22b864758f10a978ebc695fa0988c6e3"}, "mark": "bar", "encoding": {"x": {"field": "cos_avg", "title": "Distance to average token", "type": "nominal"}, "y": {"field": "count", "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Distribution of distances to average token", "width": 300}, {"data": {"name": "data-a15c5555e06ff55f43a95802505d09bc"}, "mark": "bar", "encoding": {"x": {"field": "cos_tokens", "title": "Distance between tokens", "type": "nominal"}, "y": {"field": "count", "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Distribution of distances between tokens", "width": 300}], "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-0211dab7bdc9a347c988528144aaa0bd": [{"cos_cls": "(0.0677, 0.145]", "count": 2}, {"cos_cls": "(0.145, 0.222]", "count": 3}, {"cos_cls": "(0.222, 0.298]", "count": 10}, {"cos_cls": "(0.298, 0.375]", "count": 9}, {"cos_cls": "(0.375, 0.452]", "count": 2}, {"cos_cls": "(0.452, 0.528]", "count": 0}, {"cos_cls": "(0.528, 0.605]", "count": 0}, {"cos_cls": "(0.605, 0.682]", "count": 0}, {"cos_cls": "(0.682, 0.758]", "count": 0}, {"cos_cls": "(0.758, 0.835]", "count": 1}], "data-22b864758f10a978ebc695fa0988c6e3": [{"cos_avg": "(0.335, 0.387]", "count": 1}, {"cos_avg": "(0.387, 0.438]", "count": 2}, {"cos_avg": "(0.438, 0.489]", "count": 0}, {"cos_avg": "(0.489, 0.54]", "count": 0}, {"cos_avg": "(0.54, 0.591]", "count": 0}, {"cos_avg": "(0.591, 0.643]", "count": 0}, {"cos_avg": "(0.643, 0.694]", "count": 1}, {"cos_avg": "(0.694, 0.745]", "count": 4}, {"cos_avg": "(0.745, 0.796]", "count": 11}, {"cos_avg": "(0.796, 0.847]", "count": 8}], "data-a15c5555e06ff55f43a95802505d09bc": [{"cos_tokens": "(0.0636, 0.158]", "count": 30}, {"cos_tokens": "(0.158, 0.251]", "count": 88}, {"cos_tokens": "(0.251, 0.345]", "count": 22}, {"cos_tokens": "(0.345, 0.438]", "count": 12}, {"cos_tokens": "(0.438, 0.531]", "count": 92}, {"cos_tokens": "(0.531, 0.625]", "count": 254}, {"cos_tokens": "(0.625, 0.718]", "count": 176}, {"cos_tokens": "(0.718, 0.811]", "count": 24}, {"cos_tokens": "(0.811, 0.905]", "count": 2}, {"cos_tokens": "(0.905, 0.998]", "count": 2}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

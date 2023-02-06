@@ -11,9 +11,11 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     df = pd.read_csv(args.input_file, index_col=0)
+    # if label == 2, make it 1
+    df["label"] = df["label"].apply(lambda x: 1 if x == 2 else x)
     
     data = [[{}, {}], [{}, {}]]
-     
+    
     for idx, row in df.iterrows():
         neg_count = 0
         pos_count = 0

@@ -4,6 +4,7 @@ __author__ = "shekkizh"
 import numpy as np
 from scipy.linalg import get_lapack_funcs
 from scipy.spatial.distance import pdist, squareform
+import warnings
 
 def non_negative_qpsolver(A, b, x_init, x_tol, check_tol=-1, epsilon_low=-1, epsilon_high=-1):
     """

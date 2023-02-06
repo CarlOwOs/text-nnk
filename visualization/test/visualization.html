@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-29f0310a84eb11efb608bb8754a53814"}, "mark": "rect", "encoding": {"color": {"field": "count", "legend": null, "scale": {"scheme": "viridis"}, "title": "Count", "type": "quantitative"}, "tooltip": [{"field": "true_label", "type": "quantitative"}, {"field": "predicted_label", "type": "quantitative"}, {"field": "count", "type": "quantitative"}], "x": {"axis": {"grid": false, "tickMinStep": 1}, "field": "true_label", "title": "True Label", "type": "nominal"}, "y": {"axis": {"grid": false, "tickMinStep": 1}, "field": "predicted_label", "title": "Predicted Label", "type": "nominal"}}, "height": 300, "title": "Confusion Matrix: NNK neighbors of each Label", "width": 300, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-29f0310a84eb11efb608bb8754a53814": [{"true_label": 0, "predicted_label": 0, "count": 193873}, {"true_label": 0, "predicted_label": 1, "count": 8846}, {"true_label": 1, "predicted_label": 0, "count": 18278}, {"true_label": 1, "predicted_label": 1, "count": 102199}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

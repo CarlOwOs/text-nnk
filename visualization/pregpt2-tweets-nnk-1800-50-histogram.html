@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "hconcat": [{"data": {"name": "data-b7a1fb49f85e7ff7be56885a68524960"}, "mark": {"type": "area", "interpolate": "step", "opacity": 0.5}, "encoding": {"color": {"field": "label", "legend": null, "scale": {"domain": [0, 1, 2], "range": ["orange", "blue", "green"]}, "title": "Label", "type": "nominal"}, "x": {"axis": {"grid": false, "tickMinStep": 1}, "field": "neighbors", "title": "Number of neighbors", "type": "quantitative"}, "y": {"axis": {"tickMinStep": 1}, "field": "count", "stack": null, "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Negative Sentiment: Number of neighbors per label", "width": 300}, {"data": {"name": "data-20bb46816c72f311b6849b207a79af3d"}, "mark": {"type": "area", "interpolate": "step", "opacity": 0.5}, "encoding": {"color": {"field": "label", "legend": null, "scale": {"domain": [0, 1, 2], "range": ["orange", "blue", "green"]}, "title": "Label", "type": "nominal"}, "x": {"axis": {"grid": false, "tickMinStep": 1}, "field": "neighbors", "title": "Number of neighbors", "type": "quantitative"}, "y": {"axis": {"tickMinStep": 1}, "field": "count", "stack": null, "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Neutral Sentiment: Number of neighbors per label", "width": 300}, {"data": {"name": "data-b012c62823ee0a5e19dc392003b9661f"}, "mark": {"type": "area", "interpolate": "step", "opacity": 0.5}, "encoding": {"color": {"field": "label", "legend": null, "scale": {"domain": [0, 1, 2], "range": ["orange", "blue", "green"]}, "title": "Label", "type": "nominal"}, "x": {"axis": {"grid": false, "tickMinStep": 1}, "field": "neighbors", "title": "Number of neighbors", "type": "quantitative"}, "y": {"axis": {"tickMinStep": 1}, "field": "count", "stack": null, "title": "Count", "type": "quantitative"}}, "height": 300, "title": "Positive Sentiment: Number of neighbors per label", "width": 300}, {"data": {"name": "data-f82586a20d59e25523ee651845a08f21"}, "mark": {"type": "rect", "opacity": 0.5}, "encoding": {"color": {"field": "label", "scale": {"domain": [0, 1, 2], "range": ["orange", "blue", "green"]}, "title": "Label", "type": "nominal"}, "y": {"axis": {"grid": false, "tickMinStep": 1}, "field": "sentiment", "title": "Sentiment", "type": "nominal"}}, "title": "Legend"}], "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-b7a1fb49f85e7ff7be56885a68524960": [{"neighbors": 1, "count": 178, "label": 0}, {"neighbors": 0, "count": 258, "label": 0}, {"neighbors": 4, "count": 27, "label": 0}, {"neighbors": 2, "count": 79, "label": 0}, {"neighbors": 3, "count": 50, "label": 0}, {"neighbors": 6, "count": 2, "label": 0}, {"neighbors": 5, "count": 6, "label": 0}, {"neighbors": 5, "count": 23, "label": 1}, {"neighbors": 3, "count": 99, "label": 1}, {"neighbors": 4, "count": 76, "label": 1}, {"neighbors": 0, "count": 74, "label": 1}, {"neighbors": 7, "count": 3, "label": 1}, {"neighbors": 2, "count": 169, "label": 1}, {"neighbors": 1, "count": 139, "label": 1}, {"neighbors": 6, "count": 13, "label": 1}, {"neighbors": 8, "count": 3, "label": 1}, {"neighbors": 10, "count": 1, "label": 1}, {"neighbors": 1, "count": 238, "label": 2}, {"neighbors": 0, "count": 63, "label": 2}, {"neighbors": 4, "count": 28, "label": 2}, {"neighbors": 2, "count": 196, "label": 2}, {"neighbors": 3, "count": 68, "label": 2}, {"neighbors": 5, "count": 7, "label": 2}], "data-20bb46816c72f311b6849b207a79af3d": [{"neighbors": 1, "count": 172, "label": 0}, {"neighbors": 0, "count": 325, "label": 0}, {"neighbors": 3, "count": 31, "label": 0}, {"neighbors": 2, "count": 59, "label": 0}, {"neighbors": 5, "count": 3, "label": 0}, {"neighbors": 4, "count": 10, "label": 0}, {"neighbors": 1, "count": 193, "label": 1}, {"neighbors": 2, "count": 148, "label": 1}, {"neighbors": 4, "count": 38, "label": 1}, {"neighbors": 0, "count": 104, "label": 1}, {"neighbors": 3, "count": 88, "label": 1}, {"neighbors": 6, "count": 8, "label": 1}, {"neighbors": 5, "count": 19, "label": 1}, {"neighbors": 7, "count": 2, "label": 1}, {"neighbors": 2, "count": 186, "label": 2}, {"neighbors": 1, "count": 244, "label": 2}, {"neighbors": 5, "count": 7, "label": 2}, {"neighbors": 0, "count": 53, "label": 2}, {"neighbors": 3, "count": 85, "label": 2}, {"neighbors": 4, "count": 24, "label": 2}, {"neighbors": 6, "count": 1, "label": 2}], "data-b012c62823ee0a5e19dc392003b9661f": [{"neighbors": 0, "count": 356, "label": 0}, {"neighbors": 2, "count": 34, "label": 0}, {"neighbors": 1, "count": 180, "label": 0}, {"neighbors": 3, "count": 24, "label": 0}, {"neighbors": 4, "count": 5, "label": 0}, {"neighbors": 5, "count": 1, "label": 0}, {"neighbors": 1, "count": 198, "label": 1}, {"neighbors": 3, "count": 58, "label": 1}, {"neighbors": 4, "count": 30, "label": 1}, {"neighbors": 0, "count": 167, "label": 1}, {"neighbors": 2, "count": 134, "label": 1}, {"neighbors": 5, "count": 10, "label": 1}, {"neighbors": 7, "count": 1, "label": 1}, {"neighbors": 6, "count": 2, "label": 1}, {"neighbors": 2, "count": 169, "label": 2}, {"neighbors": 1, "count": 251, "label": 2}, {"neighbors": 0, "count": 28, "label": 2}, {"neighbors": 4, "count": 39, "label": 2}, {"neighbors": 5, "count": 12, "label": 2}, {"neighbors": 3, "count": 95, "label": 2}, {"neighbors": 6, "count": 5, "label": 2}, {"neighbors": 7, "count": 1, "label": 2}], "data-f82586a20d59e25523ee651845a08f21": [{"label": 0, "sentiment": "Negative"}, {"label": 1, "sentiment": "Neutral"}, {"label": 2, "sentiment": "Positive"}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
