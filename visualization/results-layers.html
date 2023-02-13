@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .error {
+        color: red;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.17.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": "rect", "encoding": {"color": {"field": "Score", "scale": {"scheme": "viridis"}, "title": "Spearman Correlation", "type": "quantitative"}, "x": {"field": "Metric", "scale": {"paddingInner": 0}, "title": "Metric", "type": "nominal"}, "y": {"field": "Layer", "scale": {"paddingInner": 0}, "sort": ["Layer-0", "Layer-1", "Layer-2", "Layer-3", "Layer-4", "Layer-5", "Layer-6", "Layer-7", "Layer-8", "Layer-9", "Layer-10", "Layer-11", "Layer-12", "Layer-Avg"], "title": "Layer", "type": "nominal"}}, "height": 500, "width": 500}, {"mark": {"type": "text", "baseline": "middle"}, "encoding": {"color": {"condition": {"value": "black", "test": "(datum.Score > 50)"}, "value": "white"}, "text": {"field": "Score", "format": ".2f", "type": "quantitative"}, "x": {"field": "Metric", "scale": {"paddingInner": 0}, "title": "Metric", "type": "nominal"}, "y": {"field": "Layer", "scale": {"paddingInner": 0}, "sort": ["Layer-0", "Layer-1", "Layer-2", "Layer-3", "Layer-4", "Layer-5", "Layer-6", "Layer-7", "Layer-8", "Layer-9", "Layer-10", "Layer-11", "Layer-12", "Layer-Avg"], "title": "Layer", "type": "nominal"}}, "height": 500, "width": 500}], "data": {"name": "data-81327a73a465436f5082d2ae77156edf"}, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-81327a73a465436f5082d2ae77156edf": [{"Layer": "Layer-0", "Metric": "ABAvg", "Score": 54.63488961285147}, {"Layer": "Layer-1", "Metric": "ABAvg", "Score": 59.455688309116425}, {"Layer": "Layer-2", "Metric": "ABAvg", "Score": 59.24928069354621}, {"Layer": "Layer-3", "Metric": "ABAvg", "Score": 58.83964090943417}, {"Layer": "Layer-4", "Metric": "ABAvg", "Score": 58.05106207411351}, {"Layer": "Layer-5", "Metric": "ABAvg", "Score": 57.96818034439176}, {"Layer": "Layer-6", "Metric": "ABAvg", "Score": 57.21072768710757}, {"Layer": "Layer-7", "Metric": "ABAvg", "Score": 57.806449983813344}, {"Layer": "Layer-8", "Metric": "ABAvg", "Score": 57.31211992780781}, {"Layer": "Layer-9", "Metric": "ABAvg", "Score": 57.63653883467842}, {"Layer": "Layer-10", "Metric": "ABAvg", "Score": 57.32187794165069}, {"Layer": "Layer-11", "Metric": "ABAvg", "Score": 56.07707423672976}, {"Layer": "Layer-12", "Metric": "ABAvg", "Score": 54.60094119087696}, {"Layer": "Layer-Avg", "Metric": "ABAvg", "Score": 59.666206069868224}, {"Layer": "Layer-0", "Metric": "MinS", "Score": 24.87168916683248}, {"Layer": "Layer-1", "Metric": "MinS", "Score": 36.10535356437667}, {"Layer": "Layer-2", "Metric": "MinS", "Score": 38.762961017802056}, {"Layer": "Layer-3", "Metric": "MinS", "Score": 45.50711605393817}, {"Layer": "Layer-4", "Metric": "MinS", "Score": 47.11868535888132}, {"Layer": "Layer-5", "Metric": "MinS", "Score": 47.53421483233873}, {"Layer": "Layer-6", "Metric": "MinS", "Score": 48.480888083512816}, {"Layer": "Layer-7", "Metric": "MinS", "Score": 51.68330163840567}, {"Layer": "Layer-8", "Metric": "MinS", "Score": 51.7725163337483}, {"Layer": "Layer-9", "Metric": "MinS", "Score": 54.03736380421702}, {"Layer": "Layer-10", "Metric": "MinS", "Score": 51.67255212174877}, {"Layer": "Layer-11", "Metric": "MinS", "Score": 53.03896618726893}, {"Layer": "Layer-12", "Metric": "MinS", "Score": 45.76573397795002}, {"Layer": "Layer-Avg", "Metric": "MinS", "Score": 47.05279221096769}, {"Layer": "Layer-0", "Metric": "AvgMinS", "Score": 59.16622220055958}, {"Layer": "Layer-1", "Metric": "AvgMinS", "Score": 61.25130134490989}, {"Layer": "Layer-2", "Metric": "AvgMinS", "Score": 61.00607044698288}, {"Layer": "Layer-3", "Metric": "AvgMinS", "Score": 60.39779470607378}, {"Layer": "Layer-4", "Metric": "AvgMinS", "Score": 59.25591633798015}, {"Layer": "Layer-5", "Metric": "AvgMinS", "Score": 58.7307711357142}, {"Layer": "Layer-6", "Metric": "AvgMinS", "Score": 57.57809418365591}, {"Layer": "Layer-7", "Metric": "AvgMinS", "Score": 57.74407472524711}, {"Layer": "Layer-8", "Metric": "AvgMinS", "Score": 56.953937525160725}, {"Layer": "Layer-9", "Metric": "AvgMinS", "Score": 56.32224047000276}, {"Layer": "Layer-10", "Metric": "AvgMinS", "Score": 55.66501791290155}, {"Layer": "Layer-11", "Metric": "AvgMinS", "Score": 54.567948512016194}, {"Layer": "Layer-12", "Metric": "AvgMinS", "Score": 56.96899803377479}, {"Layer": "Layer-Avg", "Metric": "AvgMinS", "Score": 59.78941453509981}, {"Layer": "Layer-0", "Metric": "Avg", "Score": 59.305355178597765}, {"Layer": "Layer-1", "Metric": "Avg", "Score": 65.04033029427877}, {"Layer": "Layer-2", "Metric": "Avg", "Score": 64.41707470402108}, {"Layer": "Layer-3", "Metric": "Avg", "Score": 64.21918470980384}, {"Layer": "Layer-4", "Metric": "Avg", "Score": 63.35796062791944}, {"Layer": "Layer-5", "Metric": "Avg", "Score": 64.84834066000532}, {"Layer": "Layer-6", "Metric": "Avg", "Score": 63.28500235980212}, {"Layer": "Layer-7", "Metric": "Avg", "Score": 63.40306632038782}, {"Layer": "Layer-8", "Metric": "Avg", "Score": 62.48732586338402}, {"Layer": "Layer-9", "Metric": "Avg", "Score": 61.95370182964396}, {"Layer": "Layer-10", "Metric": "Avg", "Score": 61.663039173538536}, {"Layer": "Layer-11", "Metric": "Avg", "Score": 63.41384239544976}, {"Layer": "Layer-12", "Metric": "Avg", "Score": 63.077329295462725}, {"Layer": "Layer-Avg", "Metric": "Avg", "Score": 67.02710358168451}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div class="error" style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

@@ -9,9 +9,11 @@ from tqdm.auto import tqdm
 import sys
 sys.path.insert(0, '.')
 import altair as alt
+import plotly.express as px
+
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--output_file', default='./visualization/_sbert.html')
+parser.add_argument('--output_file', default='./visualization/matrix-02131011.html')
 parser.add_argument('--model', default='bert-base-cased')
 parser.add_argument('--tokenizer', default='bert-base-cased')
 
@@ -21,10 +23,10 @@ if __name__ == "__main__":
     cuda_available = torch.cuda.is_available()
     device = 0 if cuda_available else -1
     
-    # tokenizer = AutoTokenizer.from_pretrained(args.tokenizer) 
-    # model = AutoModel.from_pretrained(args.model)
-    tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-MiniLM-L6-v2') 
-    model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
+    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer) 
+    model = AutoModel.from_pretrained(args.model)
+    # tokenizer = AutoTokenizer.from_pretrained('sentence-transformers/all-MiniLM-L6-v2') 
+    # model = AutoModel.from_pretrained('sentence-transformers/all-MiniLM-L6-v2')
     
     dataset = load_dataset("stsb_multi_mt", name="en", split="dev")
     
@@ -32,7 +34,8 @@ if __name__ == "__main__":
     dataset = dataset.filter(lambda example: example["similarity_score"] == 4)
 
     i = 1
-    tokenized_sentence = tokenizer(dataset["sentence1"][i], return_tensors="pt")
+    # tokenized_sentence = tokenizer(dataset["sentence1"][i], return_tensors="pt")
+    tokenized_sentence = tokenizer("The man is skating.", return_tensors="pt")
     _tokens = tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
     _embed = model(**tokenized_sentence)[0].detach().squeeze(0).numpy()
 
@@ -41,7 +44,8 @@ if __name__ == "__main__":
     embed1 = np.concatenate((_embed, embed_avg, embed_max), axis=0)
     tokens1 = _tokens + ["[AVG]", "[MAX]"]
 
-    tokenized_sentence = tokenizer(dataset["sentence2"][i], return_tensors="pt")
+    # tokenized_sentence = tokenizer(dataset["sentence2"][i], return_tensors="pt")
+    tokenized_sentence = tokenizer("The man is smoking.", return_tensors="pt")
     _tokens = tokenizer.convert_ids_to_tokens(tokenized_sentence["input_ids"][0])
     _embed = model(**tokenized_sentence)[0].detach().squeeze(0).numpy()
     
@@ -55,20 +59,35 @@ if __name__ == "__main__":
     cos = np.round(cos, 3)
 
     # plot an altair heatmap using the values in cos (so that color is the value of the token pair in cos) and the token names in tokens
-    # ob the y axis put the tokens from sentence 1, and on the x axis put the tokens from sentence 2
+    # on the y axis put the tokens from sentence 1, and on the x axis put the tokens from sentence 2
     df = pd.DataFrame(cos, index=tokens1, columns=tokens2)
-    # turn grid into columnar data 
     df = df.stack().reset_index()
     df.columns = ['index', 'index2', 'value']
-    heatmap = alt.Chart(df.reset_index()).mark_rect().encode(
-        x=alt.X('index:O', sort=tokens1, axis=alt.Axis(title='Sentence 2')),
-        y=alt.Y('index2:O', sort=tokens2, axis=alt.Axis(title='Sentence 1')),
-        color=alt.Color('value:Q', legend=None),
-        tooltip=['index', 'index2', 'value']
+    
+    base = alt.Chart(df).encode(
+        x=alt.X('index', sort=tokens1, axis=alt.Axis(title='Sentence 2')),
+        y=alt.Y('index2', sort=tokens2, axis=alt.Axis(title='Sentence 1')),
     ).properties(
         width=600,
         height=600,
-        title="SBERT"
+    )
+
+    heatmap = base.mark_rect().encode(
+        color=alt.Color('value:Q', legend=None, scale=alt.Scale(scheme='viridis')),
+    )
+
+    text = base.mark_text(baseline='middle').encode(
+        text=alt.Text('value:Q', format='.2f'),
+        color=alt.condition(
+            alt.datum.value > 0.5,
+            alt.value('black'),
+            alt.value('white')
+        )
     )
     
-    heatmap.save(args.output_file)
+    (heatmap+text).save(args.output_file)
+    
+    # make it a plotly heatmap
+    # fig = px.imshow(cos, labels=dict(x="Sentence 2", y="Sentence 1", color="Cosine Similarity"), x=tokens2, y=tokens1)
+    # # save 
+    # fig.write_html(args.output_file)
